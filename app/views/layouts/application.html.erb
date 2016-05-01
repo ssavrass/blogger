@@ -1,17 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Workspace</title>
+  <title>Blogger</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-
-<p class="flash"><%= flash.notice %></p>
-
-
-<%= yield %>
-
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <nav>
+            <ul class="nav pull-right">
+              <li> Navigation Links: </li>
+              <li><%= link_to "Articles Index", articles_path %></li>
+              <li><%= link_to "Authors Index", authors_path unless logged_in? == false %></li>
+              <li><%= link_to "Tags Index", tags_path %></li>
+               <li><%= link_to "Articles by month", months_path %></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+   
 </body>
+
+<body>
+  <p class="flash">
+    <%= flash.notice %>
+  </p>
+ <div id="container">
+    <div id="content">
+      <%= yield %>
+      <hr>
+      <h6>
+        <% if logged_in? %>
+          <%= "Logged in as #{current_user.email}" %>
+          <%= link_to "(logout)", logout_path %>
+          
+        <% else %>
+          <%= link_to "(login)", login_path %>
+          <%= link_to "Create a New Author", new_author_path, class: "new_author" %>
+        <% end %>
+      </h6>
+    </div>
+  </div>
+</body>
+
 </html>

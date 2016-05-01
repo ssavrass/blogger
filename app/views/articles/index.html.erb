@@ -12,4 +12,12 @@
 
 <%= link_to "Tag list", tags_path %>
 
+<br>  </br>
+
+<%= link_to "Most Popular Artices", most_path %>
+
+<br>  </br>
+
+<% if logged_in? %>
 <%= link_to "Create a New Article", new_article_path, class: "new_article" %>
+<% end %>

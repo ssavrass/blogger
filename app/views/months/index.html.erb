@@ -1,0 +1,9 @@
+<h1>Articles by Month</h1>
+
+<ul id="months">
+  <% @months.each do |month| %>
+    <li>
+      <%= link_to month.name, month_path(month) %> (<%= @hash[month.name] %>)
+    </li>
+  <% end %>
+</ul>
